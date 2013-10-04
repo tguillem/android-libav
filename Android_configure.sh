@@ -7,21 +7,26 @@ fi
 
 TOOLCHAIN_PATH=${ANDROID_NDK}/toolchains
 
+CRT_PREFIX=
+if [ -d ${TOOLCHAIN_PATH}/arm-linux-androideabi-4.6/prebuilt/linux-x86/lib/gcc/arm-linux-androideabi/4.6.x-google ];then
+	CRT_PREFIX=.x-google
+fi
+
 TOOLCHAIN_ARM=${TOOLCHAIN_PATH}/arm-linux-androideabi-4.6/prebuilt/linux-x86
 CROSS_ARM=${TOOLCHAIN_ARM}/bin/arm-linux-androideabi-
-CRT_PATH_ARM=${TOOLCHAIN_ARM}/lib/gcc/arm-linux-androideabi/4.6.x-google/armv7-a
+CRT_PATH_ARM=${TOOLCHAIN_ARM}/lib/gcc/arm-linux-androideabi/4.6${CRT_PREFIX}/armv7-a
 SYSTEM_LIB_ARM=${ANDROID_NDK}/platforms/android-9/arch-arm/usr/lib
 LDSCRIPTS_ARM=${TOOLCHAIN_ARM}/arm-linux-androideabi/lib/ldscripts/armelf_linux_eabi.x
 
 TOOLCHAIN_X86=${TOOLCHAIN_PATH}/x86-4.6/prebuilt/linux-x86
 CROSS_X86=${TOOLCHAIN_X86}/bin/i686-linux-android-
-CRT_PATH_X86=${TOOLCHAIN_X86}/lib/gcc/i686-linux-android/4.6.x-google
+CRT_PATH_X86=${TOOLCHAIN_X86}/lib/gcc/i686-linux-android/4.6${CRT_PREFIX}
 SYSTEM_LIB_X86=${ANDROID_NDK}/platforms/android-9/arch-x86/usr/lib
 LDSCRIPTS_X86=${TOOLCHAIN_X86}/i686-linux-android/lib/ldscripts/elf_i386.x
 
 TOOLCHAIN_MIPS=${TOOLCHAIN_PATH}/mipsel-linux-android-4.6/prebuilt/linux-x86
 CROSS_MIPS=${TOOLCHAIN_MIPS}/bin/mipsel-linux-android-
-CRT_PATH_MIPS=${TOOLCHAIN_MIPS}/lib/gcc/mipsel-linux-android/4.6.x-google
+CRT_PATH_MIPS=${TOOLCHAIN_MIPS}/lib/gcc/mipsel-linux-android/4.6${CRT_PREFIX}
 SYSTEM_LIB_MIPS=${ANDROID_NDK}/platforms/android-9/arch-mips/usr/lib
 LDSCRIPTS_MIPS=${TOOLCHAIN_MIPS}/mipsel-linux-android/lib/ldscripts/elf32btsmip.x
 
